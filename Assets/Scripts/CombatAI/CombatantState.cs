@@ -5,12 +5,19 @@ using UnityEngine.AI;
 
 public class CombatantState : StateMachineBehaviour 
 {
+    public static string DISTANCE_TO_OPONENT = "DistanceToOponent";
     protected CombatantController combatant;
     
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         combatant = animator.gameObject.GetComponent<CombatantController>();
     }
+    
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        animator.SetFloat(DISTANCE_TO_OPONENT, Vector3.Distance(combatant.Position(), combatant.Oponent.Position()));
+    }    
+
     
     /*
 
@@ -19,9 +26,6 @@ public class CombatantState : StateMachineBehaviour
     {
     }
     
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-    }
     override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
     }

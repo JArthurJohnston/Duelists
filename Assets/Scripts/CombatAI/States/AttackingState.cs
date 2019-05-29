@@ -2,17 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnGuardState : CombatantState
+public class AttackingState : CombatantState
 {
-    
-    /*
-    - Follow the player
-     */
-
+    // Start is called before the first frame update
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateUpdate(animator, stateInfo, layerIndex);
-        //eventually use a rotation slerp here
-        combatant.FaceOponent();
+        //wait for a random delay
+        //attempt attack
+        //set right of way boolean
     }
 }
