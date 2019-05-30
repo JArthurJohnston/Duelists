@@ -15,6 +15,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
+  - m_Name: HasRightOfWay
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -40,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a48a3bc3d4944b042b371d3c33759292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AttackThreshold: 0.05
 --- !u!114 &114477417689106780
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AttackingState : CombatantState
 {
+    public float AttackThreshold = 0.05f;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -16,6 +17,9 @@ public class AttackingState : CombatantState
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateUpdate(animator, stateInfo, layerIndex);
+        if(combatant.AttackDistanceTraveled >= AttackThreshold && !combatant.Oponent.HasRightOfWay()){
+            animator.SetBool(HAS_RIGHT_OF_WAY, true);
+        }
         //wait for a random delay
         //attempt attack
         //set right of way boolean

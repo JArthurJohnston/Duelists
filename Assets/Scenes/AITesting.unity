@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: b6121f1ede3dbe848a9c9de2ef369c28, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: b6a3f8bca2c865243929bac258c89b96, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4960667, g: 0.80822796, b: 1.0695754, a: 1}
+  m_IndirectSpecularColor: {r: 0.14581496, g: 0.13377205, b: 0.24863783, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -228,6 +228,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Combatant
       objectReference: {fileID: 0}
+    - target: {fileID: 8686312670878222392, guid: aba1fcc9d5914854093831075a4a35f7,
+        type: 3}
+      propertyPath: Oponent
+      value: 
+      objectReference: {fileID: 75138905}
+    - target: {fileID: 8686312670878222392, guid: aba1fcc9d5914854093831075a4a35f7,
+        type: 3}
+      propertyPath: ArmLength
+      value: 1.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686312670878222392, guid: aba1fcc9d5914854093831075a4a35f7,
+        type: 3}
+      propertyPath: PlayerName
+      value: Jack
+      objectReference: {fileID: 0}
     - target: {fileID: 6182779793153196856, guid: aba1fcc9d5914854093831075a4a35f7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -283,16 +298,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8686312670878222392, guid: aba1fcc9d5914854093831075a4a35f7,
-        type: 3}
-      propertyPath: Oponent
-      value: 
-      objectReference: {fileID: 75138905}
-    - target: {fileID: 8686312670878222392, guid: aba1fcc9d5914854093831075a4a35f7,
-        type: 3}
-      propertyPath: ArmLength
-      value: 1.43
-      objectReference: {fileID: 0}
     - target: {fileID: 8653009338185219517, guid: aba1fcc9d5914854093831075a4a35f7,
         type: 3}
       propertyPath: m_ConnectedAnchor.y
@@ -333,6 +338,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Combatant (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686312670878222392, guid: aba1fcc9d5914854093831075a4a35f7,
+        type: 3}
+      propertyPath: Oponent
+      value: 
+      objectReference: {fileID: 290329133}
+    - target: {fileID: 8686312670878222392, guid: aba1fcc9d5914854093831075a4a35f7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686312670878222392, guid: aba1fcc9d5914854093831075a4a35f7,
+        type: 3}
+      propertyPath: PlayerName
+      value: Diane
       objectReference: {fileID: 0}
     - target: {fileID: 6182779793153196856, guid: aba1fcc9d5914854093831075a4a35f7,
         type: 3}
@@ -388,16 +408,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8686312670878222392, guid: aba1fcc9d5914854093831075a4a35f7,
-        type: 3}
-      propertyPath: Oponent
-      value: 
-      objectReference: {fileID: 290329133}
-    - target: {fileID: 8686312670878222392, guid: aba1fcc9d5914854093831075a4a35f7,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8653009338185219517, guid: aba1fcc9d5914854093831075a4a35f7,
         type: 3}
@@ -490,3 +500,72 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 217531161b3840e438dba89fd59f9e78, type: 3}
+--- !u!1 &2036913655
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2036913657}
+  - component: {fileID: 2036913656}
+  m_Layer: 0
+  m_Name: Directional Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &2036913656
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036913655}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 0.52
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &2036913657
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2036913655}
+  m_LocalRotation: {x: 0.2920506, y: -0.26202628, z: 0.10582186, w: 0.91370153}
+  m_LocalPosition: {x: -0.06, y: 4.56, z: -1.89}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 143.903, y: -211.071, z: -177.139}
