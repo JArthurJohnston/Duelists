@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class CombatantController : MonoBehaviour
 {
-    public string PlayerName;
-    private GameObject _attackTarget;
     public float AttackDistanceTraveled {get; set;}
-    public GameObject WeaponShoulder;
-    public GameObject WeaponHand;
-    public float ArmLength = 2;
     public GameObject AttackTarget {
         get{return _attackTarget;} 
         set {
@@ -18,20 +13,28 @@ public class CombatantController : MonoBehaviour
             }
         }
     }
+    public string PlayerName;
+    public GameObject WeaponShoulder;
+    public GameObject WeaponHand;
+    public float ArmLength = 2;
     public float attackSpeed = 15;
-    public bool IsDebug = false;
-    private Vector3 LookTarget;
     public GameObject[] Targets;
+    public GameObject[] GuardPositions;
     public CombatantController Oponent;
-    // Start is called before the first frame update
+    private GameObject _attackTarget;
     private Animator _animator;
+
+    public static int GUARD_1 = 0;
+    public static int GUARD_2 = 1;
+    public static int GUARD_3 = 2;
+    public static int GUARD_4 = 3;
+
     void Start()
     {
         AttackDistanceTraveled = 0;
         _animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         HandleAttackTarget();
@@ -39,10 +42,13 @@ public class CombatantController : MonoBehaviour
 
     void HandleAttackTarget(){
         if(_attackTarget != null){
-            WeaponHand.transform.LookAt(_attackTarget.transform);
             float step = attackSpeed * Time.deltaTime;
             AttackDistanceTraveled += step;
             if(Vector3.Distance(WeaponHand.transform.position, WeaponShoulder.transform.position) < ArmLength){
+                var relativePosition = _attackTarget.transform.position - WeaponHand.transform.position;
+                var newRotation = Quaternion.LookRotation(relativePosition);
+                WeaponHand.transform.rotation = 
+                    Quaternion.Lerp(WeaponHand.transform.rotation, newRotation, step);
                 WeaponHand.transform.position = 
                     Vector3.MoveTowards(WeaponHand.transform.position, _attackTarget.transform.position, step);
             }
@@ -56,12 +62,13 @@ public class CombatantController : MonoBehaviour
         _attackTarget = target;
     }
 
-    void HandleDebugInputs(){
-        if(IsDebug){
-            if(Input.GetKeyDown("1")){
+    public void MoveWeaponTo(Transform targetTransform){
+        float step = attackSpeed * Time.deltaTime;
 
-            }
-        }
+        var transform = WeaponHand.transform;
+
+        transform.position = Vector3.Lerp(transform.position, targetTransform.position, step);
+        transform.rotation = Quaternion.Lerp (transform.rotation, targetTransform.rotation, step);
     }
 
     public Vector3 Position(){
