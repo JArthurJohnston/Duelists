@@ -19,6 +19,7 @@ public class AttackingState : CombatantState
         base.OnStateUpdate(animator, stateInfo, layerIndex);
         if(combatant.AttackDistanceTraveled >= AttackThreshold && !combatant.Oponent.HasRightOfWay()){
             animator.SetBool(HAS_RIGHT_OF_WAY, true);
+            combatant.Oponent.BeingAttacked();
         }
         //wait for a random delay
         //attempt attack

@@ -7,6 +7,7 @@ public class CombatantState : StateMachineBehaviour
 {
     public static string DISTANCE_TO_OPONENT = "DistanceToOponent";
     public static string HAS_RIGHT_OF_WAY = "HasRightOfWay";
+    public static string BEING_ATTACKED = "BeingAttacked";
     protected CombatantController combatant;
     
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

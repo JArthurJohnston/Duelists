@@ -15,9 +15,17 @@ public class DebugCombatantController : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown("1")){
-            int guardIndex = Random.Range(0, 3);
-            _guardPosition = _controller.GuardPositions[guardIndex].transform;
+            _guardPosition = _controller.GuardPositions[0].transform;
+        } else if(Input.GetKeyDown("2")){
+            _guardPosition = _controller.GuardPositions[1].transform;
+        }else if(Input.GetKeyDown("3")){
+            _guardPosition = _controller.GuardPositions[2].transform;
+        }else if(Input.GetKeyDown("4")){
+            _guardPosition = _controller.GuardPositions[3].transform;
+        }else if(Input.GetKeyDown("5")){
+            _guardPosition = _controller.GuardPositions[4].transform;
         }
+        
         if(_guardPosition != null){
             _controller.MoveWeaponTo(_guardPosition);
         }
