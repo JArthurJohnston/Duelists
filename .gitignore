@@ -57,7 +57,7 @@ ExportedObj/
 *.jpg.meta
 *.jpeg.meta
 *.png.meta
-*.meta
+/Assets/Main.meta
 
 # Unity3D generated file on crash reports
 sysinfo.txt
