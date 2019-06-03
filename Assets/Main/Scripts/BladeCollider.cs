@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class BladeCollider : MonoBehaviour
 {
-    private static int PREVIOUS_HILT = 0;
-    private static int PREVIOUS_TIP = 1;
-    private static int CURRENT_TIP = 2;
-    private static int CURRENT_HILT = 3;
+    private static int CURRENT_HILT = 0;
+    private static int CURRENT_TIP = 1;
+    private static int PREVIOUS_TIP = 2;
+    private static int PREVIOUS_HILT = 3;
 
     private static int[] TRIANGLES = new int[] {
-        PREVIOUS_HILT,
-        PREVIOUS_TIP,
-        CURRENT_HILT,
-        CURRENT_HILT,
-        PREVIOUS_TIP,
-        CURRENT_TIP
+        CURRENT_HILT, CURRENT_TIP, PREVIOUS_TIP,
+        CURRENT_HILT, PREVIOUS_TIP, PREVIOUS_HILT
     };
 
     public float threshold = 0.005f;
@@ -26,7 +22,7 @@ public class BladeCollider : MonoBehaviour
 
     private Vector3 previousPoint;
     private Vector3 previousHilt;
-    private Vector3[] meshPoints;
+    public Vector3[] meshPoints;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,10 +30,7 @@ public class BladeCollider : MonoBehaviour
         var tip = tipPoint.transform.position;
 
         meshPoints = new Vector3[] {
-            new Vector3(hilt.x - threshold, hilt.y, hilt.z),
-            new Vector3(tip.x - threshold, tip.y, tip.z),
-            new Vector3(tip.x + threshold, tip.y, tip.z),
-            new Vector3(hilt.x + threshold, hilt.y, hilt.z),
+            hilt, tip, tip, hilt
         };
 
         collisionMesh = new Mesh();
@@ -46,22 +39,26 @@ public class BladeCollider : MonoBehaviour
 
         movingBladeCollider = gameObject.AddComponent<MeshCollider>();
         movingBladeCollider.convex = true;
-        movingBladeCollider.cookingOptions = MeshColliderCookingOptions.EnableMeshCleaning | MeshColliderCookingOptions.WeldColocatedVertices;
+        // movingBladeCollider.cookingOptions = MeshColliderCookingOptions.EnableMeshCleaning | MeshColliderCookingOptions.WeldColocatedVertices;
+        movingBladeCollider.cookingOptions = MeshColliderCookingOptions.None;
         movingBladeCollider.sharedMesh = collisionMesh;
     }
 
     // Update is called once per frame
     void Update()
     {
-        DrawDebugOutline();
+        // DrawDebugOutline();
     }
 
     void DrawDebugOutline(){
-        Debug.DrawLine(meshPoints[PREVIOUS_HILT], meshPoints[PREVIOUS_TIP], Color.cyan);
-        Debug.DrawLine(meshPoints[PREVIOUS_TIP], meshPoints[CURRENT_HILT], Color.cyan);
-        Debug.DrawLine(meshPoints[CURRENT_HILT], meshPoints[CURRENT_HILT], Color.cyan);
-        Debug.DrawLine(meshPoints[CURRENT_HILT], meshPoints[PREVIOUS_TIP], Color.cyan);
-        Debug.DrawLine(meshPoints[PREVIOUS_TIP], meshPoints[CURRENT_TIP], Color.cyan);
+        var wedgePoint = RaisedWedgePointFor(meshPoints[CURRENT_TIP], meshPoints[PREVIOUS_TIP]);
+        Debug.DrawLine(meshPoints[CURRENT_TIP], wedgePoint, Color.magenta);
+        Debug.DrawLine(meshPoints[PREVIOUS_TIP], wedgePoint, Color.magenta);
+
+        Debug.DrawLine(meshPoints[CURRENT_HILT], meshPoints[CURRENT_TIP], Color.cyan);
+        Debug.DrawLine(meshPoints[CURRENT_TIP], meshPoints[PREVIOUS_TIP], Color.cyan);
+        Debug.DrawLine(meshPoints[CURRENT_HILT], meshPoints[PREVIOUS_HILT], Color.cyan);
+        Debug.DrawLine(meshPoints[PREVIOUS_TIP], meshPoints[PREVIOUS_HILT], Color.cyan);
     }
 
     void FixedUpdate(){
@@ -96,10 +93,10 @@ public class BladeCollider : MonoBehaviour
     void UpdateMeshPoints(){
         if(VerticesAreValid()){
             meshPoints = new Vector3[] {
-                previousHilt,
-                previousPoint,
                 hiltPoint.transform.position, 
                 tipPoint.transform.position,
+                previousPoint,
+                previousHilt,
             };
             previousHilt = hiltPoint.transform.position;
             previousPoint = tipPoint.transform.position;
@@ -109,4 +106,12 @@ public class BladeCollider : MonoBehaviour
     bool VerticesAreValid(){
         return hiltPoint.transform.position != Vector3.zero && tipPoint.transform.position != Vector3.zero;
     }
+
+    private static Vector3 angleDirection = new Vector3(0, 0.2f, 0);
+    Vector3 RaisedWedgePointFor(Vector3 start, Vector3 end){
+        Vector3 direction = (start - end).normalized;
+         Vector3 midPoint = (start + end) / 2f;
+         return end + Quaternion.AngleAxis(90.0f, angleDirection) * angleDirection;
+    }
+
 }

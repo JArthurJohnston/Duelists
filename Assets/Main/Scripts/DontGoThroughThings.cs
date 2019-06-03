@@ -53,7 +53,7 @@ public class DontGoThroughThings : MonoBehaviour
 	      RaycastHit hitInfo; 
  
 	      //check for obstructions we might have missed 
-        Debug.DrawRay(transform.position, movementThisStep, Color.green, 1f);
+        // Debug.DrawRay(transform.position, movementThisStep, Color.green, 1f);
 	    //   if (Physics.Raycast(previousPosition, movementThisStep, out hitInfo, movementMagnitude, layerMask.value))
 	    //   if (BladeCast(movementThisStep, movementMagnitude, out hitInfo))
         if(myRigidbody.SweepTest(movementThisStep, out hitInfo, movementSqrMagnitude, QueryTriggerInteraction.Ignore))
