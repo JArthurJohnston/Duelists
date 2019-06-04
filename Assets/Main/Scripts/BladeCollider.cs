@@ -14,7 +14,7 @@ public class BladeCollider : MonoBehaviour
         CURRENT_HILT, PREVIOUS_TIP, PREVIOUS_HILT
     };
 
-    public float threshold = 0.005f;
+      public float threshold = 0.005f;
     public GameObject hiltPoint;
     public GameObject tipPoint;
     private MeshCollider movingBladeCollider;
@@ -39,21 +39,22 @@ public class BladeCollider : MonoBehaviour
 
         movingBladeCollider = gameObject.AddComponent<MeshCollider>();
         movingBladeCollider.convex = true;
-        // movingBladeCollider.cookingOptions = MeshColliderCookingOptions.EnableMeshCleaning | MeshColliderCookingOptions.WeldColocatedVertices;
-        movingBladeCollider.cookingOptions = MeshColliderCookingOptions.None;
+        movingBladeCollider.cookingOptions = MeshColliderCookingOptions.EnableMeshCleaning | MeshColliderCookingOptions.WeldColocatedVertices;
+        // movingBladeCollider.cookingOptions = MeshColliderCookingOptions.None;
         movingBladeCollider.sharedMesh = collisionMesh;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // DrawDebugOutline();
+        DrawDebugOutline();
     }
 
-    void DrawDebugOutline(){
-        var wedgePoint = RaisedWedgePointFor(meshPoints[CURRENT_TIP], meshPoints[PREVIOUS_TIP]);
-        Debug.DrawLine(meshPoints[CURRENT_TIP], wedgePoint, Color.magenta);
-        Debug.DrawLine(meshPoints[PREVIOUS_TIP], wedgePoint, Color.magenta);
+    void DrawDebugOutline() {
+        var wedgeTipPoint = RaisedWedgePointFor(meshPoints[CURRENT_TIP], meshPoints[PREVIOUS_TIP]);
+        var wedgeHiltPoint = RaisedWedgePointFor(meshPoints[CURRENT_HILT], meshPoints[PREVIOUS_HILT]);
+        Debug.DrawLine(meshPoints[CURRENT_TIP], wedgeTipPoint, Color.magenta);
+        Debug.DrawLine(meshPoints[PREVIOUS_TIP], wedgeTipPoint, Color.magenta);
 
         Debug.DrawLine(meshPoints[CURRENT_HILT], meshPoints[CURRENT_TIP], Color.cyan);
         Debug.DrawLine(meshPoints[CURRENT_TIP], meshPoints[PREVIOUS_TIP], Color.cyan);
@@ -92,6 +93,8 @@ public class BladeCollider : MonoBehaviour
 
     void UpdateMeshPoints(){
         if(VerticesAreValid()){
+            var tipWedgePoint = RaisedWedgePointFor(meshPoints[CURRENT_TIP], previousPoint);
+            var hiltWedgePoint = RaisedWedgePointFor(meshPoints[CURRENT_HILT], meshPoints[PREVIOUS_HILT]);
             meshPoints = new Vector3[] {
                 hiltPoint.transform.position, 
                 tipPoint.transform.position,
