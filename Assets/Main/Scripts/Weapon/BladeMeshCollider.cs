@@ -2,16 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BladeCollider : MonoBehaviour
+public class BladeMeshCollider : MonoBehaviour
 {
     private static int CURRENT_HILT = 0;
     private static int CURRENT_TIP = 1;
-    private static int PREVIOUS_TIP = 2;
-    private static int PREVIOUS_HILT = 3;
+    private static int WEDGE_TIP = 2;
+    private static int WEDGE_HILT = 3;
+    private static int PREVIOUS_TIP = 4;
+    private static int PREVIOUS_HILT = 5;
 
     private static int[] TRIANGLES = new int[] {
-        CURRENT_HILT, CURRENT_TIP, PREVIOUS_TIP,
-        CURRENT_HILT, PREVIOUS_TIP, PREVIOUS_HILT
+        CURRENT_HILT, CURRENT_TIP, WEDGE_TIP,
+        WEDGE_TIP, WEDGE_HILT, CURRENT_HILT,
+        CURRENT_HILT, CURRENT_TIP, PREVIOUS_HILT,
+        CURRENT_TIP, PREVIOUS_TIP, PREVIOUS_HILT,
+        PREVIOUS_HILT, WEDGE_TIP, PREVIOUS_TIP,
+        WEDGE_HILT, PREVIOUS_TIP, PREVIOUS_HILT,
     };
 
       public float threshold = 0.005f;
@@ -19,7 +25,6 @@ public class BladeCollider : MonoBehaviour
     public GameObject tipPoint;
     private MeshCollider movingBladeCollider;
     private Mesh collisionMesh;
-
     private Vector3 previousPoint;
     private Vector3 previousHilt;
     public Vector3[] meshPoints;
@@ -30,7 +35,7 @@ public class BladeCollider : MonoBehaviour
         var tip = tipPoint.transform.position;
 
         meshPoints = new Vector3[] {
-            hilt, tip, tip, hilt
+            hilt, tip, tip, hilt, tip, hilt
         };
 
         collisionMesh = new Mesh();
@@ -39,9 +44,11 @@ public class BladeCollider : MonoBehaviour
 
         movingBladeCollider = gameObject.AddComponent<MeshCollider>();
         movingBladeCollider.convex = true;
-        movingBladeCollider.cookingOptions = MeshColliderCookingOptions.EnableMeshCleaning | MeshColliderCookingOptions.WeldColocatedVertices;
+        // movingBladeCollider.cookingOptions = MeshColliderCookingOptions.EnableMeshCleaning;
+        // movingBladeCollider.cookingOptions = MeshColliderCookingOptions.EnableMeshCleaning | MeshColliderCookingOptions.WeldColocatedVertices;
         // movingBladeCollider.cookingOptions = MeshColliderCookingOptions.None;
         movingBladeCollider.sharedMesh = collisionMesh;
+        // movingBladeCollider.transform.localScale = new Vector3(1, 1, 1); //Dont Do This!!!
     }
 
     // Update is called once per frame
@@ -51,11 +58,6 @@ public class BladeCollider : MonoBehaviour
     }
 
     void DrawDebugOutline() {
-        var wedgeTipPoint = RaisedWedgePointFor(meshPoints[CURRENT_TIP], meshPoints[PREVIOUS_TIP]);
-        var wedgeHiltPoint = RaisedWedgePointFor(meshPoints[CURRENT_HILT], meshPoints[PREVIOUS_HILT]);
-        Debug.DrawLine(meshPoints[CURRENT_TIP], wedgeTipPoint, Color.magenta);
-        Debug.DrawLine(meshPoints[PREVIOUS_TIP], wedgeTipPoint, Color.magenta);
-
         Debug.DrawLine(meshPoints[CURRENT_HILT], meshPoints[CURRENT_TIP], Color.cyan);
         Debug.DrawLine(meshPoints[CURRENT_TIP], meshPoints[PREVIOUS_TIP], Color.cyan);
         Debug.DrawLine(meshPoints[CURRENT_HILT], meshPoints[PREVIOUS_HILT], Color.cyan);
@@ -79,7 +81,6 @@ public class BladeCollider : MonoBehaviour
 
     void UpdateCollider(){
         UpdateMesh();
-        var currentMesh = movingBladeCollider.sharedMesh;
         movingBladeCollider.sharedMesh = null;
         movingBladeCollider.sharedMesh = collisionMesh;
     }
@@ -89,15 +90,18 @@ public class BladeCollider : MonoBehaviour
         collisionMesh.Clear();
         collisionMesh.vertices = meshPoints;
         collisionMesh.triangles = TRIANGLES;
+        collisionMesh.RecalculateBounds();
     }
 
     void UpdateMeshPoints(){
         if(VerticesAreValid()){
-            var tipWedgePoint = RaisedWedgePointFor(meshPoints[CURRENT_TIP], previousPoint);
-            var hiltWedgePoint = RaisedWedgePointFor(meshPoints[CURRENT_HILT], meshPoints[PREVIOUS_HILT]);
+            var tipWedgePoint = RaisedWedgePointFor(tipPoint.transform.position, previousPoint);
+            var hiltWedgePoint = RaisedWedgePointFor(hiltPoint.transform.position, previousHilt);
             meshPoints = new Vector3[] {
                 hiltPoint.transform.position, 
                 tipPoint.transform.position,
+                tipWedgePoint,
+                hiltWedgePoint,
                 previousPoint,
                 previousHilt,
             };
