@@ -90,6 +90,7 @@ public class BladeMeshCollider : MonoBehaviour
         collisionMesh.Clear();
         collisionMesh.vertices = meshPoints;
         collisionMesh.triangles = TRIANGLES;
+        collisionMesh.RecalculateNormals();
         collisionMesh.RecalculateBounds();
     }
 
