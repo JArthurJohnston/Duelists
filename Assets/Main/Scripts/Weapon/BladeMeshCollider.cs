@@ -31,8 +31,8 @@ public class BladeMeshCollider : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var hilt = hiltPoint.transform.position;
-        var tip = tipPoint.transform.position;
+        var hilt = HiltPosition();
+        var tip = TipPosition();
 
         meshPoints = new Vector3[] {
             hilt, tip, tip, hilt, tip, hilt
@@ -41,6 +41,7 @@ public class BladeMeshCollider : MonoBehaviour
         collisionMesh = new Mesh();
         collisionMesh.vertices = meshPoints;
         collisionMesh.triangles = TRIANGLES;
+        collisionMesh.MarkDynamic();
 
         movingBladeCollider = gameObject.AddComponent<MeshCollider>();
         movingBladeCollider.convex = true;
@@ -48,7 +49,6 @@ public class BladeMeshCollider : MonoBehaviour
         // movingBladeCollider.cookingOptions = MeshColliderCookingOptions.EnableMeshCleaning | MeshColliderCookingOptions.WeldColocatedVertices;
         // movingBladeCollider.cookingOptions = MeshColliderCookingOptions.None;
         movingBladeCollider.sharedMesh = collisionMesh;
-        // movingBladeCollider.transform.localScale = new Vector3(1, 1, 1); //Dont Do This!!!
     }
 
     // Update is called once per frame
@@ -58,10 +58,15 @@ public class BladeMeshCollider : MonoBehaviour
     }
 
     void DrawDebugOutline() {
-        Debug.DrawLine(meshPoints[CURRENT_HILT], meshPoints[CURRENT_TIP], Color.cyan);
-        Debug.DrawLine(meshPoints[CURRENT_TIP], meshPoints[PREVIOUS_TIP], Color.cyan);
-        Debug.DrawLine(meshPoints[CURRENT_HILT], meshPoints[PREVIOUS_HILT], Color.cyan);
-        Debug.DrawLine(meshPoints[PREVIOUS_TIP], meshPoints[PREVIOUS_HILT], Color.cyan);
+        DrawVertice(meshPoints[CURRENT_HILT], meshPoints[CURRENT_TIP]);
+        DrawVertice(meshPoints[CURRENT_TIP], meshPoints[PREVIOUS_TIP]);
+        DrawVertice(meshPoints[CURRENT_HILT], meshPoints[PREVIOUS_HILT]);
+        DrawVertice(meshPoints[PREVIOUS_TIP], meshPoints[PREVIOUS_HILT]);
+    }
+
+    void DrawVertice(Vector3 start, Vector3 end){
+        // Debug.DrawLine(transform.TransformPoint(start), transform.TransformPoint(end), Color.cyan);
+        Debug.DrawLine(start, end, Color.cyan);
     }
 
     void FixedUpdate(){
@@ -75,8 +80,8 @@ public class BladeMeshCollider : MonoBehaviour
     }
 
     bool BladeHasMoved(){
-        return Vector3.Distance(previousHilt, hiltPoint.transform.position) > threshold &&
-            Vector3.Distance(previousPoint, tipPoint.transform.position) > threshold;
+        return Vector3.Distance(previousHilt, HiltPosition()) > threshold &&
+            Vector3.Distance(previousPoint, TipPosition()) > threshold;
     }
 
     void UpdateCollider(){
@@ -92,27 +97,36 @@ public class BladeMeshCollider : MonoBehaviour
         collisionMesh.triangles = TRIANGLES;
         collisionMesh.RecalculateNormals();
         collisionMesh.RecalculateBounds();
+        collisionMesh.RecalculateTangents();
     }
 
     void UpdateMeshPoints(){
         if(VerticesAreValid()){
-            var tipWedgePoint = RaisedWedgePointFor(tipPoint.transform.position, previousPoint);
-            var hiltWedgePoint = RaisedWedgePointFor(hiltPoint.transform.position, previousHilt);
+            var tipWedgePoint = RaisedWedgePointFor(TipPosition(), previousPoint);
+            var hiltWedgePoint = RaisedWedgePointFor(HiltPosition(), previousHilt);
             meshPoints = new Vector3[] {
-                hiltPoint.transform.position, 
-                tipPoint.transform.position,
+                HiltPosition(), 
+                TipPosition(),
                 tipWedgePoint,
                 hiltWedgePoint,
                 previousPoint,
                 previousHilt,
             };
-            previousHilt = hiltPoint.transform.position;
-            previousPoint = tipPoint.transform.position;
+            previousHilt = HiltPosition();
+            previousPoint = TipPosition();
         }
     }
 
+    Vector3 HiltPosition(){
+        return transform.TransformPoint(hiltPoint.transform.position);
+    }
+
+    Vector3 TipPosition(){
+        return transform.TransformPoint(tipPoint.transform.position);
+    }
+
     bool VerticesAreValid(){
-        return hiltPoint.transform.position != Vector3.zero && tipPoint.transform.position != Vector3.zero;
+        return HiltPosition() != Vector3.zero && TipPosition() != Vector3.zero;
     }
 
     private static Vector3 angleDirection = new Vector3(0, 0.2f, 0);
