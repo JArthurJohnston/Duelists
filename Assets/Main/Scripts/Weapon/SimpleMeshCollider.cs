@@ -32,8 +32,8 @@ public class SimpleMeshCollider : MonoBehaviour
     only made public for testing and debugging.
     The previous points are set programatically during the game
      */
-    public Transform previousHilt;
-    public Transform previousPoint;
+    private Vector3 previousHilt;
+    private Vector3 previousPoint;
     private float _defaultBladeWidth = 0.01f;
     
     void Start()
@@ -66,23 +66,27 @@ public class SimpleMeshCollider : MonoBehaviour
     }
 
     void FixedUpdate(){
-        //if(HasMoved())//may be unnecessary, as I cant imagine a time when the blade WONT be moving during the game
-        _mesh.vertices = GenerateVertices();
-        _collider.sharedMesh = null;
-        _collider.sharedMesh = _mesh;
+        if(HasMoved()){
+            _mesh.vertices = GenerateVertices();
+
+            _collider.sharedMesh = null;
+            _collider.sharedMesh = _mesh;
+
+            previousPoint = point.position;
+            previousHilt = hilt.position;
+        }
     }
 
-    bool HasMoved(){
-        return Vector3.Distance(previousHilt.position, hilt.position) > movementThreshold &&
-            Vector3.Distance(previousPoint.position, point.position) > movementThreshold;
+    bool HasMoved(){ //TODO remove this, as this check will be un necessary when the game is running
+        return Vector3.Distance(hilt.position, previousHilt) > movementThreshold;
     }
 
     Vector3[] GenerateVertices(){
         return new Vector3[] { //consider updating the _mesh.vertices values directly, instead of instantiating an arry during fixed update
             transform.InverseTransformPoint(hilt.position),
             transform.InverseTransformPoint(point.position),
-            transform.InverseTransformPoint(previousPoint.position), 
-            transform.InverseTransformPoint(previousHilt.position)
+            transform.InverseTransformPoint(previousPoint), 
+            transform.InverseTransformPoint(previousHilt)
         };
     } 
 }

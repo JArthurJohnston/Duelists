@@ -85,14 +85,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3077067476975455912}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 763e7cf79659b614aae02b52fa6a46fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 2
   hilt: {fileID: 2721972700866391570}
   point: {fileID: 2200895671747338885}
+  movementThreshold: 0.02
+  previousHilt: {fileID: 0}
+  previousPoint: {fileID: 0}
 --- !u!1 &3194616847517200698
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,7 +104,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3194616847517200699}
-  - component: {fileID: 8504893953166247920}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -128,22 +129,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8504893953166247920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3194616847517200698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2170e24b50a55a4e801c04313ae27a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  threshold: 0.005
-  hiltPoint: {fileID: 3962405075809429673}
-  tipPoint: {fileID: 6039847936397589430}
-  meshPoints: []
 --- !u!1 &3194616848084405263
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,7 +351,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1937340619640897805
 Transform:
   m_ObjectHideFlags: 0
