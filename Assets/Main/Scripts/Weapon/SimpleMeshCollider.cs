@@ -35,6 +35,7 @@ public class SimpleMeshCollider : MonoBehaviour
     private Vector3 previousHilt;
     private Vector3 previousPoint;
     private float _defaultBladeWidth = 0.01f;
+    private Rigidbody _rigidbody;
     
     void Start()
     {
@@ -66,7 +67,8 @@ public class SimpleMeshCollider : MonoBehaviour
     }
 
     void FixedUpdate(){
-        if(HasMoved()){
+        // if(HasMoved()){
+            // _rigidbody.velocity = Vector3.zero;
             _mesh.vertices = GenerateVertices();
 
             _collider.sharedMesh = null;
@@ -74,7 +76,7 @@ public class SimpleMeshCollider : MonoBehaviour
 
             previousPoint = point.position;
             previousHilt = hilt.position;
-        }
+        // }
     }
 
     bool HasMoved(){ //TODO remove this, as this check will be un necessary when the game is running
