@@ -313,6 +313,7 @@ GameObject:
   - component: {fileID: 3900226994761488188}
   - component: {fileID: 3754619278719342207}
   - component: {fileID: 7164463127269604903}
+  - component: {fileID: 544928023059909597}
   m_Layer: 9
   m_Name: VisibleBlade
   m_TagString: Untagged
@@ -379,6 +380,21 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &544928023059909597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099207912563689842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df582242523ba2adb8f0f36eab91c792, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  marker: {fileID: 0}
+  collisionDistance: 2
+  movementThreshold: 0.002
 --- !u!1 &4308775987616114103
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,7 +498,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4308775987616114103}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 763e7cf79659b614aae02b52fa6a46fe, type: 3}
   m_Name: 

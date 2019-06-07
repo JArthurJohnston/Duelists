@@ -8,6 +8,7 @@ public class BladeHitDetection : MonoBehaviour
     private Vector3 _previousPosition;
     public GameObject marker;
     public float collisionDistance = 2;
+    public float movementThreshold = 0.002f;
 
     void Start()
     {
@@ -17,26 +18,27 @@ public class BladeHitDetection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawLine(transform.position, _previousPosition, Color.cyan);
     }
 
     void FixedUpdate(){
-        if(transform.position != _previousPosition){
+        // if(Vector3.Distance(transform.position, _previousPosition) > movementThreshold){
             // Debug.Log(transform.position);
             // Debug.Log(_previousPosition);
             // Debug.DrawLine(transform.position, _previousPosition, Color.cyan);
-            var distance = Vector3.Distance(_previousPosition, transform.position);
+            // var distance = Vector3.Distance(_previousPosition, transform.position);
             
-            var direction = GetMovementDirection();
-            var markerPosition = transform.position + direction * distance;
-            marker.transform.position = markerPosition;;
+            // var direction = GetMovementDirection();
+            // var markerPosition = transform.position + direction * distance;
+            // marker.transform.position = markerPosition;;
 
+            var linePosition = transform.position + GetMovementDirection() * collisionDistance;
+            Debug.DrawLine(transform.position, linePosition, Color.cyan);
             _previousPosition = transform.position;
-        }
+        // }
     }
 
     Vector3 GetMovementDirection(){
-        return transform.position - _previousPosition;
+        return   transform.position - _previousPosition;
         // var direction =  transform.position - _previousPosition;
         // var localDirection = transform.InverseTransformDirection(direction);
     }
