@@ -346,7 +346,6 @@ GameObject:
   - component: {fileID: 2268640901326975651}
   - component: {fileID: 5286949825521119430}
   - component: {fileID: 7788345623578951734}
-  - component: {fileID: 2913234716480201597}
   - component: {fileID: 1221293931755886019}
   m_Layer: 9
   m_Name: Blade
@@ -494,22 +493,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hilt: {fileID: 0}
   tip: {fileID: 0}
---- !u!114 &2913234716480201597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6862485253842792106}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2170e24b50a55a4e801c04313ae27a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  threshold: 0.005
-  hiltPoint: {fileID: 3962405075809429673}
-  tipPoint: {fileID: 6039847936397589430}
-  meshPoints: []
 --- !u!114 &1221293931755886019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -523,4 +506,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   marker: {fileID: 6358889927333559821}
-  collisionDistance: 2
+  collisionDistance: 5
+  hilt: {fileID: 2721972700866391570}
+  point: {fileID: 2200895671747338885}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295

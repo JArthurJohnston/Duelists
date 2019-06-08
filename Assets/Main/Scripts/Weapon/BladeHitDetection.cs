@@ -9,6 +9,10 @@ public class BladeHitDetection : MonoBehaviour
     public GameObject marker;
     public float collisionDistance = 2;
 
+    public Transform hilt;
+    public Transform point;
+    public LayerMask layerMask;
+
     void Start()
     {
         _previousPosition = transform.position;
@@ -25,13 +29,24 @@ public class BladeHitDetection : MonoBehaviour
             // Debug.Log(transform.position);
             // Debug.Log(_previousPosition);
             // Debug.DrawLine(transform.position, _previousPosition, Color.cyan);
-            var distance = Vector3.Distance(_previousPosition, transform.position);
+            // var distance = Vector3.Distance(_previousPosition, transform.position);
             
             var direction = GetMovementDirection();
-            var markerPosition = transform.position + direction * distance;
-            marker.transform.position = markerPosition;;
+            var markerPosition = transform.position + direction * collisionDistance;
+            marker.transform.position = markerPosition;
+
+            CastTowardsSwing();
 
             _previousPosition = transform.position;
+        }
+    }
+
+    void CastTowardsSwing(){
+        RaycastHit hit;
+        float bladeRadius = 0.05f;
+        if(Physics.CapsuleCast(hilt.position, point.position, bladeRadius, GetMovementDirection(), 
+            out hit, collisionDistance, layerMask, QueryTriggerInteraction.Ignore)){
+            Debug.Log(hit.collider.name);
         }
     }
 
