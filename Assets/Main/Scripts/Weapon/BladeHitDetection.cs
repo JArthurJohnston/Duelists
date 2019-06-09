@@ -8,40 +8,56 @@ public class BladeHitDetection : MonoBehaviour
     private Vector3 _previousPosition;
     public float collisionDistance = 2;
     public float detectionDistance = 10;
+    public float minimumAttackingSpeed = 0.025f;
     public Transform hilt;
     public Transform point;
     public LayerMask layerMask;
+    private Renderer _renderer;
+    private Material _defaultColor;
+
+    public Material attackColor;
+
 
     void Start()
     {
+        _renderer = GetComponent<Renderer>();
+        _defaultColor = _renderer.material;
         _previousPosition = transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        // Debug.DrawLine(transform.position, _previousPosition, Color.cyan);
+    void ChangeBladeColor(Color color){
+        _renderer.material.SetColor("_Color", color);
     }
 
     void FixedUpdate(){
         if(transform.position != _previousPosition) {
 
             if(IsAttacking()){
-                Debug.Log("Attacking " + GetMovementDirection().magnitude);
+                _renderer.material = attackColor;
+            } else {
+                _renderer.material = _defaultColor;
             }
 
             _previousPosition = transform.position;
         }
     }
 
-    bool IsAttacking(){
-        return CastTowardsSwing() == "Hittable";
+    public bool IsAttacking(){
+        return GetCurrentWeaponTarget() == "Hittable";
     }
 
-    string CastTowardsSwing(){
+    /**
+    If the weapon is moving fast enough, it will cast in the direction its moving, then
+    return the tag of the object its moving towards
+     */
+    string GetCurrentWeaponTarget(){
         RaycastHit hit;
-        float bladeRadius = 0.05f;
-        if(Physics.CapsuleCast(hilt.position, point.position, bladeRadius, GetMovementDirection(), out hit, collisionDistance, layerMask, QueryTriggerInteraction.Ignore)){
+        Vector3 direction = GetMovementDirection();
+        float speed = direction.magnitude;
+
+
+
+        if(speed > minimumAttackingSpeed && GetSwingTarget(out hit)){
             var distance = Vector3.Distance(transform.position, hit.transform.position);
             if(distance < detectionDistance){
                 return hit.collider.tag;
@@ -52,7 +68,15 @@ public class BladeHitDetection : MonoBehaviour
         return "";
     }
 
-    Vector3 GetMovementDirection(){
+    bool GetSwingTarget(out RaycastHit hit){
+        float bladeRadius = 0.05f;
+        return Physics.CapsuleCast(
+            hilt.position, 
+            point.position, 
+            bladeRadius, GetMovementDirection(), out hit, collisionDistance, layerMask, QueryTriggerInteraction.Ignore);
+    }
+
+    public Vector3 GetMovementDirection(){
         return transform.position - _previousPosition;
     }
 }

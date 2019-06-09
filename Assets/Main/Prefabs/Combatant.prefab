@@ -901,23 +901,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04b5cd65f7fbbc847ac712b9eaf4325e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerName: 
-  WeaponShoulder: {fileID: 4218772571767962680}
-  WeaponHand: {fileID: 6018825608098748356}
-  ArmLength: 2
-  attackSpeed: 15
+  weapon: {fileID: 864708335349878195}
+  Oponent: {fileID: 0}
   Targets:
   - {fileID: 5880237963646244766}
   - {fileID: 8114409822731015977}
   - {fileID: 7274338978523673859}
   - {fileID: 4242714714547647860}
+  PlayerName: 
+  WeaponShoulder: {fileID: 4218772571767962680}
+  WeaponHand: {fileID: 6018825608098748356}
+  ArmLength: 2
+  attackSpeed: 15
   GuardPositions:
   - {fileID: 8730014640963030811}
   - {fileID: 894242509746309650}
   - {fileID: 6193725539498001340}
   - {fileID: 1733860562518984114}
   - {fileID: 8759618300479588923}
-  Oponent: {fileID: 0}
 --- !u!114 &4540609629072163342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1155,3 +1156,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1388170528786554629}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &864708335349878195 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2252866460175323830, guid: 9c7ec9f152e04c14284a47020a99c061,
+    type: 3}
+  m_PrefabInstance: {fileID: 1388170528786554629}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d3b94f78faf5eb6bb6d2e12922a5f2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

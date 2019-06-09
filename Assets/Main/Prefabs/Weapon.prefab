@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3194616847517200699}
   - component: {fileID: 8504893953166247920}
+  - component: {fileID: 2252866460175323830}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -39,7 +40,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3194616847517200698}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2170e24b50a55a4e801c04313ae27a1, type: 3}
   m_Name: 
@@ -48,6 +49,19 @@ MonoBehaviour:
   hiltPoint: {fileID: 3962405075809429673}
   tipPoint: {fileID: 6039847936397589430}
   meshPoints: []
+--- !u!114 &2252866460175323830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3194616847517200698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d3b94f78faf5eb6bb6d2e12922a5f2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitDetector: {fileID: 1221293931755886019}
 --- !u!1 &3194616848084405263
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,7 +332,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 84804c30edba74e48bc32be74d28a39b, type: 2}
+  - {fileID: 2100000, guid: f27d88f8a6d6df249b3fb259e90393ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -427,10 +441,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df582242523ba2adb8f0f36eab91c792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  marker: {fileID: 0}
   collisionDistance: 5
+  detectionDistance: 10
+  minimumAttackingSpeed: 0.025
   hilt: {fileID: 2721972700866391570}
   point: {fileID: 2200895671747338885}
   layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  attackColor: {fileID: 2100000, guid: be9dec37b1b65504aba5f37f47c52e50, type: 2}
