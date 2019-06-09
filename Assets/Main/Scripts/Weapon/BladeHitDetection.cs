@@ -6,9 +6,8 @@ public class BladeHitDetection : MonoBehaviour
 {
     // Start is called before the first frame update
     private Vector3 _previousPosition;
-    public GameObject marker;
     public float collisionDistance = 2;
-
+    public float detectionDistance = 10;
     public Transform hilt;
     public Transform point;
     public LayerMask layerMask;
@@ -21,38 +20,39 @@ public class BladeHitDetection : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawLine(transform.position, _previousPosition, Color.cyan);
+        // Debug.DrawLine(transform.position, _previousPosition, Color.cyan);
     }
 
     void FixedUpdate(){
-        if(transform.position != _previousPosition){
-            // Debug.Log(transform.position);
-            // Debug.Log(_previousPosition);
-            // Debug.DrawLine(transform.position, _previousPosition, Color.cyan);
-            // var distance = Vector3.Distance(_previousPosition, transform.position);
-            
-            var direction = GetMovementDirection();
-            var markerPosition = transform.position + direction * collisionDistance;
-            marker.transform.position = markerPosition;
+        if(transform.position != _previousPosition) {
 
-            CastTowardsSwing();
+            if(IsAttacking()){
+                Debug.Log("Attacking " + GetMovementDirection().magnitude);
+            }
 
             _previousPosition = transform.position;
         }
     }
 
-    void CastTowardsSwing(){
+    bool IsAttacking(){
+        return CastTowardsSwing() == "Hittable";
+    }
+
+    string CastTowardsSwing(){
         RaycastHit hit;
         float bladeRadius = 0.05f;
-        if(Physics.CapsuleCast(hilt.position, point.position, bladeRadius, GetMovementDirection(), 
-            out hit, collisionDistance, layerMask, QueryTriggerInteraction.Ignore)){
-            Debug.Log(hit.collider.name);
+        if(Physics.CapsuleCast(hilt.position, point.position, bladeRadius, GetMovementDirection(), out hit, collisionDistance, layerMask, QueryTriggerInteraction.Ignore)){
+            var distance = Vector3.Distance(transform.position, hit.transform.position);
+            if(distance < detectionDistance){
+                return hit.collider.tag;
+            // } else if (distance < collisionDistance) {
+            //     return hit.collider.name;
+            }
         }
+        return "";
     }
 
     Vector3 GetMovementDirection(){
         return transform.position - _previousPosition;
-        // var direction =  transform.position - _previousPosition;
-        // var localDirection = transform.InverseTransformDirection(direction);
     }
 }

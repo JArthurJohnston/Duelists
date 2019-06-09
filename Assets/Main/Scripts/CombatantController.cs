@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CombatantController : MonoBehaviour
+public class CombatantController : AbstractPlayer
 {
     public float AttackDistanceTraveled {get; set;}
     public GameObject AttackTarget {
@@ -18,16 +18,9 @@ public class CombatantController : MonoBehaviour
     public GameObject WeaponHand;
     public float ArmLength = 2;
     public float attackSpeed = 15;
-    public GameObject[] Targets;
     public GameObject[] GuardPositions;
-    public CombatantController Oponent;
     private GameObject _attackTarget;
     private Animator _animator;
-
-    public static int GUARD_1 = 0;
-    public static int GUARD_2 = 1;
-    public static int GUARD_3 = 2;
-    public static int GUARD_4 = 3;
 
     void Start()
     {
@@ -69,10 +62,6 @@ public class CombatantController : MonoBehaviour
 
         transform.position = Vector3.Lerp(transform.position, targetTransform.position, step);
         transform.rotation = Quaternion.Lerp (transform.rotation, targetTransform.rotation, step);
-    }
-
-    public Vector3 Position(){
-        return transform.position;
     }
 
     public void FaceOponent(){

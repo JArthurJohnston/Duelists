@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestPlayerController : MonoBehaviour
+public class TestPlayerController : AbstractPlayer
 {
     public float speed;
     public float rotationSpeed;

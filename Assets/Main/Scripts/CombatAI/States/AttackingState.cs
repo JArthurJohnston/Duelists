@@ -17,7 +17,8 @@ public class AttackingState : CombatantState
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateUpdate(animator, stateInfo, layerIndex);
-        if(combatant.AttackDistanceTraveled >= AttackThreshold && !combatant.Oponent.HasRightOfWay()){
+        // if(combatant.AttackDistanceTraveled >= AttackThreshold && !combatant.Oponent.HasRightOfWay()){        
+        if(combatant.AttackDistanceTraveled >= AttackThreshold){
             animator.SetBool(HAS_RIGHT_OF_WAY, true);
             combatant.Oponent.BeingAttacked();
         }
