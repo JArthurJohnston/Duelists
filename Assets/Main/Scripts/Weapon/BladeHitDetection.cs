@@ -38,6 +38,8 @@ public class BladeHitDetection : MonoBehaviour
                 _renderer.material = _defaultColor;
             }
 
+            var linePosition = transform.position + GetMovementDirection() * collisionDistance;
+            Debug.DrawLine(transform.position, linePosition, Color.cyan);
             _previousPosition = transform.position;
         }
     }
