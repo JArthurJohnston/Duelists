@@ -159,16 +159,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d15154050bc4ab4ebaa7b71288ebe11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 1037981273279802409}
+  weapon: {fileID: 6171286741579973519}
   Oponent: {fileID: 0}
   Targets:
   - {fileID: 656925655102349281}
   - {fileID: 2334062519647335861}
   - {fileID: 4755638124840540746}
   - {fileID: 5383879361979825129}
+  attackAngle: 0.05
   speed: 10
   rotationSpeed: 100
-  weapon: {fileID: 1235231411036308346}
+  weaponHand: {fileID: 1235231411036308346}
 --- !u!54 &1235231410070453852
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -431,9 +432,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c7ec9f152e04c14284a47020a99c061, type: 3}
---- !u!114 &1037981273279802409 stripped
+--- !u!114 &6171286741579973519 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2252866460175323830, guid: 9c7ec9f152e04c14284a47020a99c061,
+  m_CorrespondingSourceObject: {fileID: 4936152948805614864, guid: 9c7ec9f152e04c14284a47020a99c061,
     type: 3}
   m_PrefabInstance: {fileID: 1235231409061101215}
   m_PrefabAsset: {fileID: 0}

@@ -8,8 +8,8 @@ public class AbstractPlayer : MonoBehaviour
     public AbstractPlayer Oponent;
     public GameObject[] Targets;
 
-    void FixedUpdate(){
-        Debug.Log("Weapon Angle: " + Vector3.Angle(weapon.transform.forward, Oponent.weapon.Heading()));
+    void Update(){
+        // Debug.Log("Weapon Angle: " + Vector3.Angle(weapon.transform.forward, Oponent.weapon.Heading()));
     }
 
     public bool IsAttacking(){
@@ -21,7 +21,7 @@ public class AbstractPlayer : MonoBehaviour
     }
 
     public void BeingAttacked(){
-
+        Debug.Log(Vector3.Angle(Oponent.weapon.Position() - transform.position, Oponent.weapon.Heading()));
     }
 
     public GameObject AttackTarget {get; set;}

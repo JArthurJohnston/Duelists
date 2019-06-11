@@ -6,16 +6,16 @@ public class TestPlayerController : AbstractPlayer
 {
     public float speed;
     public float rotationSpeed;
-    public GameObject weapon;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    public GameObject weaponHand;
+    public float attackAngle = 5f;
     // Update is called once per frame
     void Update()
     {
+        
+        var color = Vector3.Angle(Oponent.weapon.Heading(), transform.position - Oponent.weapon.Position()) > attackAngle ? 
+            Color.cyan : Color.magenta;
+        Debug.DrawLine(transform.position, Oponent.weapon.Position(), color);
+
         MovePlayer();
         MoveWeapon();
     }
@@ -35,6 +35,6 @@ public class TestPlayerController : AbstractPlayer
         float rotationX = Input.GetAxisRaw("Mouse X") * rotationSpeed * Time.deltaTime;
         float rotationY = Input.GetAxisRaw("Mouse Y") * rotationSpeed * Time.deltaTime * -1;
 
-        weapon.transform.Rotate(rotationY, rotationX, 0);
+        weaponHand.transform.Rotate(rotationY, rotationX, 0);
     }
 }

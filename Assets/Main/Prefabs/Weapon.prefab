@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3194616847517200699}
-  - component: {fileID: 8504893953166247920}
+  - component: {fileID: 4936152948805614864}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8504893953166247920
+--- !u!114 &4936152948805614864
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,13 +41,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3194616847517200698}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2170e24b50a55a4e801c04313ae27a1, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d3b94f78faf5eb6bb6d2e12922a5f2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  threshold: 0.005
-  hiltPoint: {fileID: 3962405075809429673}
-  tipPoint: {fileID: 6039847936397589430}
-  meshPoints: []
+  movementThreshold: 0.02
+  hitDetector: {fileID: 1221293931755886019}
+  blade: {fileID: 6862485253842792106}
+  hilt: {fileID: 3962405075809429673}
+  point: {fileID: 6039847936397589430}
 --- !u!1 &3194616848084405263
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,9 +267,6 @@ GameObject:
   - component: {fileID: 1802462854370190888}
   - component: {fileID: 6773262836306683939}
   - component: {fileID: 118982661728117237}
-  - component: {fileID: 2268640901326975651}
-  - component: {fileID: 5286949825521119430}
-  - component: {fileID: 7788345623578951734}
   - component: {fileID: 1221293931755886019}
   m_Layer: 9
   m_Name: Blade
@@ -318,7 +316,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 84804c30edba74e48bc32be74d28a39b, type: 2}
+  - {fileID: 2100000, guid: f27d88f8a6d6df249b3fb259e90393ee, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -368,53 +366,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 3
---- !u!114 &2268640901326975651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6862485253842792106}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d14303fa7ac5f294e96153ade9c76f28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sendTriggerMessage: 0
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 512
-  skinWidth: 0.1
-  hiltPoint: {fileID: 3962405075809429673}
-  tipPoint: {fileID: 6039847936397589430}
-  bladeRadius: 0.25
---- !u!65 &5286949825521119430
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6862485253842792106}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0000001, y: 2.0000002, z: 1.0000005}
-  m_Center: {x: 0.000000059604645, y: -1.0408341e-17, z: -0.000000029802337}
---- !u!114 &7788345623578951734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6862485253842792106}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f62c8a7ce3c7524a935a910c863c630, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hilt: {fileID: 0}
-  tip: {fileID: 0}
 --- !u!114 &1221293931755886019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,10 +378,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df582242523ba2adb8f0f36eab91c792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  marker: {fileID: 0}
   collisionDistance: 5
+  detectionDistance: 10
+  minimumAttackingSpeed: 0.025
   hilt: {fileID: 2721972700866391570}
   point: {fileID: 2200895671747338885}
   layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  attackColor: {fileID: 0}

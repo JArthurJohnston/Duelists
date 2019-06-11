@@ -24,4 +24,8 @@ public class Weapon : MonoBehaviour
     public Vector3 Heading(){
         return _previousPosition - blade.transform.position;
     }
+
+    public Vector3 Position(){
+        return blade.transform.position;
+    }
 }
