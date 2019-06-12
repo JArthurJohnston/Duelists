@@ -30,6 +30,9 @@ public class CombatantController : AbstractPlayer
 
     void Update()
     {
+        if(IsBeingAttacked()){
+            _animator.SetBool(CombatantState.BEING_ATTACKED, true);
+        }
         HandleAttackTarget();
     }
 
@@ -70,11 +73,6 @@ public class CombatantController : AbstractPlayer
 
     public bool HasRightOfWay(){
         return _animator.GetBool(CombatantState.HAS_RIGHT_OF_WAY);
-    }
-
-    //this should be a check of the position and movement of the oponents weapon
-    public void BeingAttacked(){
-        _animator.SetBool(CombatantState.BEING_ATTACKED, true);
     }
 
 }

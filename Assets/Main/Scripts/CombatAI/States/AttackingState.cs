@@ -16,10 +16,9 @@ public class AttackingState : CombatantState
     // Start is called before the first frame update
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        base.OnStateUpdate(animator, stateInfo, layerIndex);
-        // if(combatant.AttackDistanceTraveled >= AttackThreshold && !combatant.Oponent.HasRightOfWay()){        
+        base.OnStateUpdate(animator, stateInfo, layerIndex);   
         if(combatant.AttackDistanceTraveled >= AttackThreshold){
-            animator.SetBool(HAS_RIGHT_OF_WAY, true);
+            //set player right of way state
             combatant.Oponent.BeingAttacked();
         }
         //wait for a random delay
