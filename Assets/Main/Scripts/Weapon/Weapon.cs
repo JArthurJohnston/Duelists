@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public float movementThreshold = 0.02f;
+    public float movementThreshold = 0.02f; //TODO make sure this is set properly
     public BladeHitDetection hitDetector;
     public GameObject blade;
     public GameObject hilt;

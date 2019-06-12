@@ -57,8 +57,6 @@ public class BladeHitDetection : MonoBehaviour
         Vector3 direction = GetMovementDirection();
         float speed = direction.magnitude;
 
-
-
         if(speed > minimumAttackingSpeed && GetSwingTarget(out hit)){
             var distance = Vector3.Distance(transform.position, hit.transform.position);
             if(distance < detectionDistance){
