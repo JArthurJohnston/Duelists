@@ -10,6 +10,10 @@ public class Weapon : MonoBehaviour
     public GameObject hilt;
     public GameObject point;
     private Vector3 _previousPosition;
+
+    void Update(){
+        Debug.DrawLine(blade.transform.position, blade.transform.position + Heading() * 12, Color.green);
+    }
     
     void FixedUpdate(){
         if(Vector3.Distance(blade.transform.position, _previousPosition) > movementThreshold){
@@ -22,7 +26,7 @@ public class Weapon : MonoBehaviour
     }
 
     public Vector3 Heading(){
-        return _previousPosition - blade.transform.position;
+        return blade.transform.position - _previousPosition;
     }
 
     public Vector3 Position(){

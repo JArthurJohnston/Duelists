@@ -7,14 +7,14 @@ public class TestPlayerController : AbstractPlayer
     public float speed;
     public float rotationSpeed;
     public GameObject weaponHand;
-    public float attackAngle = 5f;
+    public float attackAngle = 30f;
     // Update is called once per frame
     void Update()
     {
-        
-        var color = Vector3.Angle(Oponent.weapon.Heading(), transform.position - Oponent.weapon.Position()) > attackAngle ? 
-            Color.cyan : Color.magenta;
+        var angle = Vector3.Angle(Oponent.weapon.Heading(), transform.position - Oponent.weapon.Position());
+        var color = angle > attackAngle ? Color.cyan : Color.magenta;
         Debug.DrawLine(transform.position, Oponent.weapon.Position(), color);
+        Debug.Log("Attack Angle: " + angle);
 
         MovePlayer();
         MoveWeapon();
