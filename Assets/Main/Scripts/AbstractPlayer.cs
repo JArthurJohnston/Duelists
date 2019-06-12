@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class AbstractPlayer : MonoBehaviour
 {
+    private enum GUARDS {
+        FOURTH = 0,
+        SIXTH=1,
+        SEVENTH=2,
+        EIGHTH=3,
+    }
     public Weapon weapon;
     public AbstractPlayer Oponent;
     public GameObject[] Targets;
@@ -18,15 +24,40 @@ public class AbstractPlayer : MonoBehaviour
     }
 
     public bool IsBeingAttacked(){
-        return Vector3.Angle(Oponent.weapon.Heading(), transform.position - Oponent.weapon.Position()) < attackDetectionAngle;
+        return AttackAngle() < attackDetectionAngle;
+    }
+
+    /**
+    Ideally this will return the index of the guard needed to deflect the current attack
+     */
+    public int FindGuardPosition(){
+        Vector3 heading = AttackHeading();
+        if(heading.z > 0 && heading.y > 0){
+            return GUARDS.SEVENTH;
+        } else if(heading.z > 0 && heading.y < 0){
+            return GUARDS.FOURTH;
+        } else if(heading.z < 0 && heading.y > 0){
+            return GUARDS.EIGHTH;
+        } else if(heading.z < 0 && heading.y < 0){
+            return GUARDS.SIXTH;
+        }
+        return -1;
+    }
+
+    public Vector3 AttackHeading(){
+        return (transform.position - Oponent.weapon.Position()).normalized; //might not need normalized
+    }
+
+    public float AttackAngle(){
+        return Vector3.Angle(Oponent.weapon.Heading(), transform.position - Oponent.weapon.Position());
     }
     
     public Vector3 Position(){
         return transform.position;
     }
 
-    public void BeingAttacked(){
-        Debug.Log(Vector3.Angle(Oponent.weapon.Position() - transform.position, Oponent.weapon.Heading()));
+    public void BeingAttacked(){ //TODO delete
+        // Debug.Log(Vector3.Angle(Oponent.weapon.Position() - transform.position, Oponent.weapon.Heading()));
     }
 
     public GameObject AttackTarget {get; set;}
