@@ -5,7 +5,7 @@ using UnityEngine;
 public class AbstractPlayer : MonoBehaviour
 {
     private enum GUARDS {
-        FOURTH = 0,
+        FOURTH=0,
         SIXTH=1,
         SEVENTH=2,
         EIGHTH=3,
@@ -19,12 +19,12 @@ public class AbstractPlayer : MonoBehaviour
         // Debug.Log("Weapon Angle: " + Vector3.Angle(weapon.transform.forward, Oponent.weapon.Heading()));
     }
 
-    public bool IsAttacking(){
+    public bool IsAttacking(){ //TODO possibly remove this
         return weapon.IsAttacking();
     }
 
     public bool IsBeingAttacked(){
-        return AttackAngle() < attackDetectionAngle;
+        return Oponent.weapon.Speed() > 0 && AttackAngle() < attackDetectionAngle;
     }
 
     /**
@@ -33,13 +33,13 @@ public class AbstractPlayer : MonoBehaviour
     public int FindGuardPosition(){
         Vector3 heading = AttackHeading();
         if(heading.z > 0 && heading.y > 0){
-            return GUARDS.SEVENTH;
+            return (int)GUARDS.SEVENTH;
         } else if(heading.z > 0 && heading.y < 0){
-            return GUARDS.FOURTH;
+            return (int)GUARDS.FOURTH;
         } else if(heading.z < 0 && heading.y > 0){
-            return GUARDS.EIGHTH;
+            return (int)GUARDS.EIGHTH;
         } else if(heading.z < 0 && heading.y < 0){
-            return GUARDS.SIXTH;
+            return (int)GUARDS.SIXTH;
         }
         return -1;
     }

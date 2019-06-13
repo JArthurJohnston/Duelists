@@ -11,9 +11,26 @@ public class DebugCombatantController : MonoBehaviour
         _controller = GetComponent<CombatantController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        HandleUserInput();
+
+        if(_controller.IsBeingAttacked()){
+            Debug.Log("Being Attackedd!");
+            int guardIndex = _controller.FindGuardPosition();
+            if(guardIndex > 0){
+                _guardPosition = _controller.GuardPositions[guardIndex].transform;
+            }
+        } else {
+            Debug.Log("Safe");
+        }
+
+        if(_guardPosition != null){
+            _controller.MoveWeaponTo(_guardPosition);
+        }
+    }
+
+    void HandleUserInput(){
         if(Input.GetKeyDown("1")){
             _guardPosition = _controller.GuardPositions[0].transform;
         } else if(Input.GetKeyDown("2")){
@@ -26,8 +43,5 @@ public class DebugCombatantController : MonoBehaviour
             _guardPosition = _controller.GuardPositions[4].transform;
         }
         
-        if(_guardPosition != null){
-            _controller.MoveWeaponTo(_guardPosition);
-        }
     }
 }

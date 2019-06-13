@@ -29,6 +29,10 @@ public class Weapon : MonoBehaviour
         return blade.transform.position - _previousPosition;
     }
 
+    public float Speed(){
+        return Heading().magnitude;
+    }
+
     public Vector3 Position(){
         return blade.transform.position;
     }

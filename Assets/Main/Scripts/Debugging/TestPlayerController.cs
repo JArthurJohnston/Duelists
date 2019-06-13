@@ -12,7 +12,7 @@ public class TestPlayerController : AbstractPlayer
     void Update()
     {
         Debug.DrawLine(transform.position, Oponent.weapon.Position(), Color.cyan);
-        Debug.Log("Attack Angle: " + (transform.position - Oponent.weapon.Position()).normalized);
+        // Debug.Log("Attack Angle: " + (transform.position - Oponent.weapon.Position()).normalized);
 
         MovePlayer();
         MoveWeapon();
