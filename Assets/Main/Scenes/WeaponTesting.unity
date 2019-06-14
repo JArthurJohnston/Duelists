@@ -244,6 +244,11 @@ PrefabInstance:
       propertyPath: movementThreshold
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 5178652265609039387, guid: aba1fcc9d5914854093831075a4a35f7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aba1fcc9d5914854093831075a4a35f7, type: 3}
 --- !u!4 &68758602 stripped
