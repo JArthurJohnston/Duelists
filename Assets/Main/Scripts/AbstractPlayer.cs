@@ -27,23 +27,6 @@ public class AbstractPlayer : MonoBehaviour
         return Oponent.weapon.Speed() > 0 && AttackAngle() < attackDetectionAngle;
     }
 
-    /**
-    Ideally this will return the index of the guard needed to deflect the current attack
-     */
-    public int FindGuardPosition(){
-        Vector3 heading = AttackHeading();
-        if(heading.z > 0 && heading.y > 0){
-            return (int)GUARDS.SEVENTH;
-        } else if(heading.z > 0 && heading.y < 0){
-            return (int)GUARDS.FOURTH;
-        } else if(heading.z < 0 && heading.y > 0){
-            return (int)GUARDS.EIGHTH;
-        } else if(heading.z < 0 && heading.y < 0){
-            return (int)GUARDS.SIXTH;
-        }
-        return -1;
-    }
-
     public Vector3 AttackHeading(){
         return (transform.position - Oponent.weapon.Position()).normalized; //might not need normalized
     }

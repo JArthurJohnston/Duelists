@@ -970,9 +970,10 @@ MonoBehaviour:
   - {fileID: 8114409822731015977}
   - {fileID: 7274338978523673859}
   - {fileID: 4242714714547647860}
+  attackDetectionAngle: 30
   PlayerName: 
   WeaponShoulder: {fileID: 4218772571767962680}
-  WeaponHand: {fileID: 6018825608098748356}
+  WeaponHand: {fileID: 993889932143654362}
   ArmLength: 2
   attackSpeed: 15
   GuardPositions:
@@ -1212,6 +1213,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c7ec9f152e04c14284a47020a99c061, type: 3}
+--- !u!4 &4545902948055559742 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3194616847517200699, guid: 9c7ec9f152e04c14284a47020a99c061,
+    type: 3}
+  m_PrefabInstance: {fileID: 1388170528786554629}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &6324031658503905813 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4936152948805614864, guid: 9c7ec9f152e04c14284a47020a99c061,
@@ -1224,9 +1231,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d3b94f78faf5eb6bb6d2e12922a5f2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &4545902948055559742 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3194616847517200699, guid: 9c7ec9f152e04c14284a47020a99c061,
-    type: 3}
-  m_PrefabInstance: {fileID: 1388170528786554629}
-  m_PrefabAsset: {fileID: 0}

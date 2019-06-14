@@ -35,6 +35,22 @@ public class CombatantController : AbstractPlayer
         }
         HandleAttackTarget();
     }
+        /**
+    Ideally this will return the index of the guard needed to deflect the current attack
+     */
+    public int FindGuardPosition(){
+        Vector3 heading = AttackHeading();
+        if(heading.x > 0 && heading.y > 0){
+            return 2;
+        } else if(heading.x > 0 && heading.y < 0){
+            return 0;
+        } else if(heading.x < 0 && heading.y > 0){
+            return 3;
+        } else if(heading.x < 0 && heading.y < 0){
+            return 1;
+        }
+        return -1;
+    }
 
     void HandleAttackTarget(){
         if(_attackTarget != null){

@@ -11,13 +11,20 @@ public class DebugCombatantController : MonoBehaviour
         _controller = GetComponent<CombatantController>();
     }
 
+    public static void DrawVectors(Vector3 position){
+        Debug.DrawLine(position, position + Vector3.right * 3, Color.red);
+        Debug.DrawLine(position, position + Vector3.up * 3, Color.green);
+        Debug.DrawLine(position, position + Vector3.forward * 3, Color.blue);
+    }
+
     void Update()
     {
+        Debug.DrawLine(transform.position, _controller.Oponent.weapon.Position(), Color.cyan);
         HandleUserInput();
 
         if(_controller.IsBeingAttacked()){
-            Debug.Log("Being Attackedd!");
             int guardIndex = _controller.FindGuardPosition();
+            Debug.Log("Being Attackedd! " + _controller.AttackHeading() +" " + guardIndex);
             if(guardIndex > 0){
                 _guardPosition = _controller.GuardPositions[guardIndex].transform;
             }
