@@ -17,7 +17,9 @@ public class CombatantState : StateMachineBehaviour
     
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetFloat(DISTANCE_TO_OPONENT, Vector3.Distance(combatant.Position(), combatant.Oponent.Position()));
+        var combatantPosition = combatant.Position();
+        var oponentPosition = combatant.Oponent.Position();
+        animator.SetFloat(DISTANCE_TO_OPONENT, Vector3.Distance(combatantPosition, oponentPosition));
     }    
 
     
