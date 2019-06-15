@@ -25,7 +25,7 @@ public class DebugCombatantController : MonoBehaviour
         if(_controller.IsBeingAttacked()){
             int guardIndex = _controller.FindGuardPosition();
             // Debug.Log("Being Attackedd! " + _controller.AttackHeading() +" " + guardIndex);
-            if(guardIndex > 0){
+            if(guardIndex >= 0){
                 _guardPosition = _controller.GuardPositions[guardIndex].transform;
             }
         } else {

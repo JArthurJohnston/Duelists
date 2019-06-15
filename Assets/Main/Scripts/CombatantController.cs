@@ -41,13 +41,13 @@ public class CombatantController : AbstractPlayer
     public int FindGuardPosition(){
         Vector3 heading = AttackHeading();
         if(heading.x > 0 && heading.y > 0){
-            return 2;
-        } else if(heading.x > 0 && heading.y < 0){
-            return 0;
-        } else if(heading.x < 0 && heading.y > 0){
             return 3;
+        } else if(heading.x > 0 && heading.y < 0){
+            return 1; //fourth
+        } else if(heading.x < 0 && heading.y > 0){
+            return 2;
         } else if(heading.x < 0 && heading.y < 0){
-            return 1;
+            return 0; //sixth
         }
         return -1;
     }
