@@ -5,21 +5,13 @@ using UnityEngine;
 public class CombatantController : AbstractPlayer
 {
     public float AttackDistanceTraveled {get; set;}
-    public GameObject AttackTarget {
-        get{return _attackTarget;} 
-        set {
-            if(_attackTarget == null){
-                StartCoroutine(StartAttackingTarget(value));
-            }
-        }
-    }
+    public GameObject AttackTarget {get; set;}
     public string PlayerName;
     public GameObject WeaponShoulder;
     public GameObject WeaponHand;
     public float ArmLength = 2;
     public float attackSpeed = 15;
     public GameObject[] GuardPositions;
-    private GameObject _attackTarget;
     private Animator _animator;
     public Transform enGuardPosition;
 
@@ -53,26 +45,19 @@ public class CombatantController : AbstractPlayer
         return -1;
     }
 
-    void HandleAttackTarget(){
-        if(_attackTarget != null){
+    void HandleAttackTarget(){ //this could be extracted into a coroutine
+        if(AttackTarget != null){
             float step = attackSpeed * Time.deltaTime;
             AttackDistanceTraveled += step;
             if(Vector3.Distance(WeaponHand.transform.position, WeaponShoulder.transform.position) < ArmLength){
-                var relativePosition = _attackTarget.transform.position - WeaponHand.transform.position;
-                var newRotation = Quaternion.LookRotation(relativePosition);
+                var targetHeading = AttackTarget.transform.position - WeaponHand.transform.position;
+                var newRotation = Quaternion.LookRotation(targetHeading);
                 WeaponHand.transform.rotation = 
                     Quaternion.Lerp(WeaponHand.transform.rotation, newRotation, step);
                 WeaponHand.transform.position = 
-                    Vector3.MoveTowards(WeaponHand.transform.position, _attackTarget.transform.position, step);
+                    Vector3.MoveTowards(WeaponHand.transform.position, AttackTarget.transform.position, step);
             }
         }
-    }
-
-    IEnumerator StartAttackingTarget(GameObject target){
-        AttackDistanceTraveled = 0.0f;
-        float delay = Random.Range(0.5f, 2f);
-        yield return new WaitForSeconds(delay);
-        _attackTarget = target;
     }
 
     public void MoveWeaponTo(Transform targetTransform){
@@ -87,9 +72,4 @@ public class CombatantController : AbstractPlayer
     public void FaceOponent(){
         transform.LookAt(Oponent.Position());
     }
-
-    public bool HasRightOfWay(){
-        return _animator.GetBool(CombatantState.HAS_RIGHT_OF_WAY);
-    }
-
 }
