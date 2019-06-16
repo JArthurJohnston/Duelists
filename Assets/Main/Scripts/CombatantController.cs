@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CombatantController : AbstractPlayer
 {
-    public float AttackDistanceTraveled {get; set;}
-    public GameObject AttackTarget {get; set;}
     public string PlayerName;
     public GameObject WeaponShoulder;
     public GameObject WeaponHand;
@@ -17,16 +15,15 @@ public class CombatantController : AbstractPlayer
 
     void Start()
     {
-        AttackDistanceTraveled = 0;
         _animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        if(IsBeingAttacked()){
-            _animator.SetBool(CombatantState.BEING_ATTACKED, true);
-        }
-        HandleAttackTarget();
+        // if(IsBeingAttacked()){
+        //     _animator.SetBool(CombatantState.BEING_ATTACKED, true); //ideally this logic would be handled by the state machine
+        // }
+        // HandleAttackTarget();
     }
         /**
     Ideally this will return the index of the guard needed to deflect the current attack
@@ -45,19 +42,11 @@ public class CombatantController : AbstractPlayer
         return -1;
     }
 
-    void HandleAttackTarget(){ //this could be extracted into a coroutine
-        if(AttackTarget != null){
-            float step = attackSpeed * Time.deltaTime;
-            AttackDistanceTraveled += step;
-            if(Vector3.Distance(WeaponHand.transform.position, WeaponShoulder.transform.position) < ArmLength){
-                var targetHeading = AttackTarget.transform.position - WeaponHand.transform.position;
-                var newRotation = Quaternion.LookRotation(targetHeading);
-                WeaponHand.transform.rotation = 
-                    Quaternion.Lerp(WeaponHand.transform.rotation, newRotation, step);
-                WeaponHand.transform.position = 
-                    Vector3.MoveTowards(WeaponHand.transform.position, AttackTarget.transform.position, step);
-            }
-        }
+    public void MoveWeaponTowards(Vector3 target, float step){
+        WeaponHand.transform.rotation = 
+            Quaternion.Lerp(WeaponHand.transform.rotation, Quaternion.LookRotation(target - WeaponHand.transform.position), step);
+        WeaponHand.transform.position = 
+            Vector3.MoveTowards(WeaponHand.transform.position, target, step);
     }
 
     public void MoveWeaponTo(Transform targetTransform){

@@ -22,19 +22,19 @@ public class DebugCombatantController : MonoBehaviour
         Debug.DrawLine(transform.position, _controller.Oponent.weapon.Position(), Color.cyan);
         HandleUserInput();
 
-        if(_controller.IsBeingAttacked()){
-            int guardIndex = _controller.FindGuardPosition();
-            // Debug.Log("Being Attackedd! " + _controller.AttackHeading() +" " + guardIndex);
-            if(guardIndex >= 0){
-                _guardPosition = _controller.GuardPositions[guardIndex].transform;
-            }
-        } else {
-            // Debug.Log("Safe");
-        }
+        // if(_controller.IsBeingAttacked()){
+        //     int guardIndex = _controller.FindGuardPosition();
+        //     // Debug.Log("Being Attackedd! " + _controller.AttackHeading() +" " + guardIndex);
+        //     if(guardIndex >= 0){
+        //         _guardPosition = _controller.GuardPositions[guardIndex].transform;
+        //     }
+        // } else {
+        //     // Debug.Log("Safe");
+        // }
 
-        if(_guardPosition != null){
-            _controller.MoveWeaponTo(_guardPosition);
-        }
+        // if(_guardPosition != null){
+        //     _controller.MoveWeaponTo(_guardPosition);
+        // }
     }
 
     void HandleUserInput(){
@@ -49,6 +49,5 @@ public class DebugCombatantController : MonoBehaviour
         }else if(Input.GetKeyDown("5")){
             _guardPosition = _controller.GuardPositions[4].transform;
         }
-        
     }
 }
