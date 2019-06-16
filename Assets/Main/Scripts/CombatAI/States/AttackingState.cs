@@ -18,8 +18,6 @@ public class AttackingState : CombatantState
     {
         base.OnStateUpdate(animator, stateInfo, layerIndex);   
         if(combatant.AttackDistanceTraveled >= AttackThreshold){
-            //set player right of way state
-            combatant.Oponent.BeingAttacked();
         }
         //wait for a random delay
         //attempt attack

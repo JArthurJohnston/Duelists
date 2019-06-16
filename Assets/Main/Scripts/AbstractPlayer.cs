@@ -19,10 +19,6 @@ public class AbstractPlayer : MonoBehaviour
         // Debug.Log("Weapon Angle: " + Vector3.Angle(weapon.transform.forward, Oponent.weapon.Heading()));
     }
 
-    public bool IsAttacking(){ //TODO possibly remove this
-        return weapon.IsAttacking();
-    }
-
     public bool IsBeingAttacked(){
         return Oponent.weapon.Speed() > 0 && AttackAngle() < attackDetectionAngle;
     }
@@ -39,10 +35,8 @@ public class AbstractPlayer : MonoBehaviour
         return transform.position;
     }
 
-    public void BeingAttacked(){ //TODO delete
-        // Debug.Log(Vector3.Angle(Oponent.weapon.Position() - transform.position, Oponent.weapon.Heading()));
+    public void BladesCollided(){
+        Debug.Log("Wap!!!");
     }
-
-    public GameObject AttackTarget {get; set;}
 }
 

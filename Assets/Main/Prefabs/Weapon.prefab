@@ -265,9 +265,10 @@ GameObject:
   - component: {fileID: 1194330665771267238}
   - component: {fileID: 1813246720632655224}
   - component: {fileID: 1802462854370190888}
-  - component: {fileID: 6773262836306683939}
   - component: {fileID: 118982661728117237}
   - component: {fileID: 1221293931755886019}
+  - component: {fileID: 4974887514046693597}
+  - component: {fileID: 7377144942970805137}
   m_Layer: 9
   m_Name: Blade
   m_TagString: Hittable
@@ -336,20 +337,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &6773262836306683939
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6862485253842792106}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.83
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!54 &118982661728117237
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -387,3 +374,28 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   attackColor: {fileID: 0}
+--- !u!65 &4974887514046693597
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6862485253842792106}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000001, y: 2.0000002, z: 1.0000005}
+  m_Center: {x: 0.000000059604645, y: -1.0408341e-17, z: -0.000000029802337}
+--- !u!114 &7377144942970805137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6862485253842792106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d8b7a24529099f46b57beaccdc722bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

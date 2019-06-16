@@ -21,6 +21,7 @@ public class CombatantController : AbstractPlayer
     public GameObject[] GuardPositions;
     private GameObject _attackTarget;
     private Animator _animator;
+    public Transform enGuardPosition;
 
     void Start()
     {

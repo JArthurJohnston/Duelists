@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestPlayerController : AbstractPlayer
+public class DebugPlayerMoveController : MonoBehaviour
 {
+
     public float speed;
     public float rotationSpeed;
     public GameObject weaponHand;
-    public float attackAngle = 30f;
     
+    // Start is called before the first frame update
     void Update()
     {
         // Debug.Log("Attack Angle: " + (transform.position - Oponent.weapon.Position()).normalized);

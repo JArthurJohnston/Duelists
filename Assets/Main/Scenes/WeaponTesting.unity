@@ -199,22 +199,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8653009338185219517, guid: aba1fcc9d5914854093831075a4a35f7,
+    - target: {fileID: 5178652265609039387, guid: aba1fcc9d5914854093831075a4a35f7,
         type: 3}
-      propertyPath: m_ConnectedAnchor.x
-      value: 0.0000012983386
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8653009338185219517, guid: aba1fcc9d5914854093831075a4a35f7,
+    - target: {fileID: 6324031658503905813, guid: aba1fcc9d5914854093831075a4a35f7,
         type: 3}
-      propertyPath: m_ConnectedAnchor.y
-      value: -1.0004147
+      propertyPath: movementThreshold
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 4218772571767962680, guid: aba1fcc9d5914854093831075a4a35f7,
-        type: 3}
-      propertyPath: m_TagString
-      value: Hittable
-      objectReference: {fileID: 0}
-    - target: {fileID: 6018825608098748356, guid: aba1fcc9d5914854093831075a4a35f7,
         type: 3}
       propertyPath: m_TagString
       value: Hittable
@@ -224,12 +219,12 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Hittable
       objectReference: {fileID: 0}
-    - target: {fileID: 878897791595681746, guid: aba1fcc9d5914854093831075a4a35f7,
+    - target: {fileID: 6002095066488903774, guid: aba1fcc9d5914854093831075a4a35f7,
         type: 3}
       propertyPath: m_TagString
       value: Hittable
       objectReference: {fileID: 0}
-    - target: {fileID: 6002095066488903774, guid: aba1fcc9d5914854093831075a4a35f7,
+    - target: {fileID: 878897791595681746, guid: aba1fcc9d5914854093831075a4a35f7,
         type: 3}
       propertyPath: m_TagString
       value: Hittable
@@ -239,15 +234,20 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Hittable
       objectReference: {fileID: 0}
-    - target: {fileID: 6324031658503905813, guid: aba1fcc9d5914854093831075a4a35f7,
+    - target: {fileID: 6018825608098748356, guid: aba1fcc9d5914854093831075a4a35f7,
         type: 3}
-      propertyPath: movementThreshold
-      value: 0.25
+      propertyPath: m_TagString
+      value: Hittable
       objectReference: {fileID: 0}
-    - target: {fileID: 5178652265609039387, guid: aba1fcc9d5914854093831075a4a35f7,
+    - target: {fileID: 8653009338185219517, guid: aba1fcc9d5914854093831075a4a35f7,
         type: 3}
-      propertyPath: m_Enabled
-      value: 1
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.0000012983386
+      objectReference: {fileID: 0}
+    - target: {fileID: 8653009338185219517, guid: aba1fcc9d5914854093831075a4a35f7,
+        type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: -1.0004147
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aba1fcc9d5914854093831075a4a35f7, type: 3}
@@ -531,6 +531,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1235231410070453842, guid: 217531161b3840e438dba89fd59f9e78,
+        type: 3}
+      propertyPath: Oponent
+      value: 
+      objectReference: {fileID: 1651880460}
+    - target: {fileID: 1235231410070453842, guid: 217531161b3840e438dba89fd59f9e78,
+        type: 3}
+      propertyPath: attackAngle
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8823118968612592679, guid: 217531161b3840e438dba89fd59f9e78,
         type: 3}
       propertyPath: m_ConnectedAnchor.x
@@ -545,16 +555,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConnectedAnchor.z
       value: 0.0034236577
-      objectReference: {fileID: 0}
-    - target: {fileID: 1235231410070453842, guid: 217531161b3840e438dba89fd59f9e78,
-        type: 3}
-      propertyPath: Oponent
-      value: 
-      objectReference: {fileID: 1651880460}
-    - target: {fileID: 1235231410070453842, guid: 217531161b3840e438dba89fd59f9e78,
-        type: 3}
-      propertyPath: attackAngle
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 217531161b3840e438dba89fd59f9e78, type: 3}
