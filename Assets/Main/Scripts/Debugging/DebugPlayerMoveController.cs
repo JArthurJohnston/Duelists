@@ -7,7 +7,6 @@ public class DebugPlayerMoveController : MonoBehaviour
 
     public float speed;
     public float rotationSpeed;
-    public GameObject weaponHand;
     
     // Start is called before the first frame update
     void Update()
@@ -33,6 +32,6 @@ public class DebugPlayerMoveController : MonoBehaviour
         float rotationX = Input.GetAxisRaw("Mouse X") * rotationSpeed * Time.deltaTime;
         float rotationY = Input.GetAxisRaw("Mouse Y") * rotationSpeed * Time.deltaTime * -1;
 
-        weaponHand.transform.Rotate(rotationY, rotationX, 0);
+        transform.Rotate(rotationY, rotationX, 0);
     }
 }
