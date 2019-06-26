@@ -10,6 +10,7 @@ public class Weapon : MonoBehaviour
     public GameObject hilt;
     public GameObject point;
     private Vector3 _previousPosition;
+    public GripBehavior grip;
 
     void Update(){
         Debug.DrawLine(blade.transform.position, blade.transform.position + Heading() * 12, Color.green);
@@ -35,5 +36,13 @@ public class Weapon : MonoBehaviour
 
     public Vector3 Position(){
         return blade.transform.position;
+    }
+
+    void OnCollisionEnter(Collision collision){
+        grip.UnlockRotation();
+    }
+
+    void OnCollisionExit(Collision collision){
+        grip.LockRotation();
     }
 }
