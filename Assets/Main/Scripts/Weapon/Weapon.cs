@@ -5,7 +5,6 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public float movementThreshold = 0.02f; //TODO make sure this is set properly
-    public BladeHitDetection hitDetector;
     public GameObject blade;
     public GameObject hilt;
     public GameObject point;
@@ -17,13 +16,14 @@ public class Weapon : MonoBehaviour
     }
     
     void FixedUpdate(){
-        if(Vector3.Distance(blade.transform.position, _previousPosition) > movementThreshold){
+        //why am I doing this in fixed update again?
+        if(DistanceTraveled() > movementThreshold){
             _previousPosition = blade.transform.position;
         }
     }
 
-    public bool IsAttacking(){
-        return hitDetector.IsAttacking();
+    public float DistanceTraveled(){
+        return Vector3.Distance(blade.transform.position, _previousPosition);
     }
 
     public Vector3 Heading(){
@@ -36,13 +36,5 @@ public class Weapon : MonoBehaviour
 
     public Vector3 Position(){
         return blade.transform.position;
-    }
-
-    void OnCollisionEnter(Collision collision){
-        grip.UnlockRotation();
-    }
-
-    void OnCollisionExit(Collision collision){
-        grip.LockRotation();
     }
 }
